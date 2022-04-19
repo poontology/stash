@@ -44,7 +44,8 @@ func (b SceneURLBuilder) GetSpriteURL() string {
 }
 
 func (b SceneURLBuilder) GetScreenshotURL(updateTime time.Time) string {
-	return b.BaseURL + "/scene/" + b.SceneID + "/screenshot?" + strconv.FormatInt(updateTime.Unix(), 10)
+	timestamp := strconv.FormatInt(updateTime.Unix(), 10)
+	return b.BaseURL + "/scene/" + b.SceneID + "/screenshot?thumbnail=1&" + timestamp
 }
 
 func (b SceneURLBuilder) GetChaptersVTTURL() string {

@@ -37,7 +37,13 @@ func (s *SceneServer) StreamSceneDirect(scene *models.Scene, w http.ResponseWrit
 }
 
 func (s *SceneServer) ServeScreenshot(scene *models.Scene, w http.ResponseWriter, r *http.Request) {
-	filepath := GetInstance().Paths.Scene.GetScreenshotPath(scene.GetHash(config.GetInstance().GetVideoFileNamingAlgorithm()))
+	checksum := scene.GetHash(config.GetInstance().GetVideoFileNamingAlgorithm())
+	filepath := GetInstance().Paths.Scene.GetScreenshotPath(checksum)
+
+	thumbnailQueryParam := r.URL.Query().Get("thumbnail")
+	if thumbnailQueryParam != "" {
+		filepath = GetInstance().Paths.Scene.GetThumbnailScreenshotPath(checksum)
+	}
 
 	// fall back to the scene image blob if the file isn't present
 	screenshotExists, _ := fsutil.FileExists(filepath)
