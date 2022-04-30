@@ -889,6 +889,7 @@ export const SceneEditPanel: React.FC<IProps> = ({
                     className="scene-cover"
                     src={coverImagePreview}
                     alt={intl.formatMessage({ id: "cover_image" })}
+                    referrerPolicy="no-referrer"
                   />
                 )}
                 <ImageInput

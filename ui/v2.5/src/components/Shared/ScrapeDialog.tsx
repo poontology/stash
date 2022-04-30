@@ -295,7 +295,11 @@ const ScrapedImage: React.FC<IScrapedImageProps> = (props) => {
   }
 
   return (
-    <img className={props.className} src={value} alt={props.placeholder} />
+    <img className={props.className}
+      src={value}
+      alt={props.placeholder}
+      referrerPolicy="no-referrer"
+    />
   );
 };
 
